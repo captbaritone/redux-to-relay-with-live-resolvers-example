@@ -1,13 +1,28 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Footer from './Footer'
-import VisibleTodoList from '../containers/VisibleTodoList'
+import React from "react";
+import Footer from "./Footer";
+import TodoList from "./TodoList";
+import graphql from "babel-plugin-relay/macro";
+import useFragment from "react-relay/lib/relay-hooks/useFragment";
+import { connect } from "react-redux";
+import * as TodoActions from "../actions";
+import { bindActionCreators } from "redux";
 
-const MainSection = ({ todosCount, completedCount, actions }) =>
-  (
+function MainSection({ query: queryKey, actions }) {
+  const data = useFragment(
+    graphql`
+      fragment MainSection on Root {
+        todosCount: todos_count
+        completedCount: completed_todos_count
+        ...TodoList
+        ...Footer
+      }
+    `,
+    queryKey
+  );
+  const { todosCount, completedCount } = data;
+  return (
     <section className="main">
-      {
-        !!todosCount && 
+      {!!todosCount && (
         <span>
           <input
             className="toggle-all"
@@ -15,25 +30,19 @@ const MainSection = ({ todosCount, completedCount, actions }) =>
             checked={completedCount === todosCount}
             readOnly
           />
-          <label onClick={actions.completeAllTodos}/>
+          <label onClick={actions.completeAllTodos} />
         </span>
-      }
-      <VisibleTodoList />
-      {
-        !!todosCount &&
-        <Footer
-          completedCount={completedCount}
-          activeCount={todosCount - completedCount}
-          onClearCompleted={actions.clearCompleted}
-        />
-      }
+      )}
+      <TodoList query={data} />
+      {!!todosCount && (
+        <Footer query={data} onClearCompleted={actions.clearCompleted} />
+      )}
     </section>
-  )
-
-MainSection.propTypes = {
-  todosCount: PropTypes.number.isRequired,
-  completedCount: PropTypes.number.isRequired,
-  actions: PropTypes.object.isRequired
+  );
 }
 
-export default MainSection;
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(TodoActions, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(MainSection);

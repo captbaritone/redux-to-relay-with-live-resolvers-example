@@ -1,66 +1,69 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import TodoTextInput from './TodoTextInput'
+import React from "react";
+import classnames from "classnames";
+import TodoTextInput from "./TodoTextInput";
+import graphql from "babel-plugin-relay/macro";
+import useFragment from "react-relay/lib/relay-hooks/useFragment";
 
-export default class TodoItem extends Component {
-  static propTypes = {
-    todo: PropTypes.object.isRequired,
-    editTodo: PropTypes.func.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
-    completeTodo: PropTypes.func.isRequired
-  }
+export default function TodoItem({
+  todo: todoKey,
+  completeTodo,
+  editTodo,
+  deleteTodo,
+}) {
+  const todo = useFragment(
+    graphql`
+      fragment TodoItem on Todo {
+        redux_id
+        completed
+        text
+      }
+    `,
+    todoKey
+  );
 
-  state = {
-    editing: false
-  }
+  const [editing, setEditing] = React.useState(false);
 
-  handleDoubleClick = () => {
-    this.setState({ editing: true })
-  }
-
-  handleSave = (id, text) => {
+  const handleSave = (id, text) => {
     if (text.length === 0) {
-      this.props.deleteTodo(id)
+      deleteTodo(id);
     } else {
-      this.props.editTodo(id, text)
+      editTodo(id, text);
     }
-    this.setState({ editing: false })
+    setEditing(false);
+  };
+
+  let element;
+  if (editing) {
+    element = (
+      <TodoTextInput
+        text={todo.text}
+        editing={editing}
+        onSave={(text) => handleSave(todo.redux_id, text)}
+      />
+    );
+  } else {
+    element = (
+      <div className="view">
+        <input
+          className="toggle"
+          type="checkbox"
+          checked={todo.completed}
+          onChange={() => completeTodo(todo.redux_id)}
+        />
+        <label onDoubleClick={() => setEditing(true)}>{todo.text}</label>
+        <button className="destroy" onClick={() => deleteTodo(todo.redux_id)} />
+      </div>
+    );
   }
 
-  render() {
-    const { todo, completeTodo, deleteTodo } = this.props
-
-    let element
-    if (this.state.editing) {
-      element = (
-        <TodoTextInput text={todo.text}
-                       editing={this.state.editing}
-                       onSave={(text) => this.handleSave(todo.id, text)} />
-      )
-    } else {
-      element = (
-        <div className="view">
-          <input className="toggle"
-                 type="checkbox"
-                 checked={todo.completed}
-                 onChange={() => completeTodo(todo.id)} />
-          <label onDoubleClick={this.handleDoubleClick}>
-            {todo.text}
-          </label>
-          <button className="destroy"
-                  onClick={() => deleteTodo(todo.id)} />
-        </div>
-      )
-    }
-
-    return (
-      <li className={classnames({
+  return (
+    <li
+      className={classnames({
         completed: todo.completed,
-        editing: this.state.editing
-      })}>
-        {element}
-      </li>
-    )
-  }
+        editing,
+      })}
+    >
+      {element}
+    </li>
+  );
 }

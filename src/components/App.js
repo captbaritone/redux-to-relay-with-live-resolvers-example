@@ -1,12 +1,23 @@
-import React from 'react'
-import Header from '../containers/Header'
-import MainSection from '../containers/MainSection'
+import React from "react";
+import Header from "./Header";
+import MainSection from "./MainSection";
+import useLazyLoadQuery from "react-relay/lib/relay-hooks/useLazyLoadQuery";
+import graphql from "babel-plugin-relay/macro";
 
-const App = () => (
-  <div>
-    <Header />
-    <MainSection />
-  </div>
-)
+function App() {
+  const query = useLazyLoadQuery(
+    graphql`
+      query AppQuery {
+        ...MainSection
+      }
+    `
+  );
+  return (
+    <div>
+      <Header />
+      <MainSection query={query} />
+    </div>
+  );
+}
 
-export default App
+export default App;

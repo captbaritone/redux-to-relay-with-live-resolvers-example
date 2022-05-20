@@ -1,0 +1,10 @@
+{
+    "src": "./src",
+    "schema": "./schema.graphql",
+    "language": "javascript",
+    "featureFlags": {
+        "enable_relay_resolver_transform": true,
+        "enable_client_edges": { "kind": "enabled" }
+    },
+    "schemaExtensions": ["./src/relay/schemaExtensions"]
+}
