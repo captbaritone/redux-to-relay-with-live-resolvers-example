@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<039b7f79aa003b8d618bc00beb56e2ea>>
+ * @generated SignedSource<<18b235225ceb08174889c26ffc5e91e8>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,45 +15,27 @@ var node = {
   "name": "RootCompletedTodosCountResolver",
   "selections": [
     {
-      "kind": "ClientEdgeToClientObject",
-      "concreteType": "Todo",
-      "backingField": {
-        "alias": null,
-        "args": null,
-        "fragment": {
+      "kind": "ClientExtension",
+      "selections": [
+        {
+          "alias": null,
           "args": null,
-          "kind": "FragmentSpread",
-          "name": "RootAllTodosResolver"
-        },
-        "kind": "RelayLiveResolver",
-        "name": "all_todos",
-        "resolverModule": require('./../RootAllTodosResolver.js'),
-        "path": "all_todos"
-      },
-      "linkedField": {
-        "alias": null,
-        "args": null,
-        "concreteType": "Todo",
-        "kind": "LinkedField",
-        "name": "all_todos",
-        "plural": true,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "fragment": {
+          "concreteType": "Todo",
+          "kind": "LinkedField",
+          "name": "all_todos",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
               "args": null,
-              "kind": "FragmentSpread",
-              "name": "TodoCompletedResolver"
-            },
-            "kind": "RelayResolver",
-            "name": "completed",
-            "resolverModule": require('./../TodoCompletedResolver.js'),
-            "path": "completed"
-          }
-        ],
-        "storageKey": null
-      }
+              "kind": "ScalarField",
+              "name": "completed",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ]
     }
   ],
   "type": "Root",

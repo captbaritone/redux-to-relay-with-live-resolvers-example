@@ -1,6 +1,5 @@
 import graphql from "babel-plugin-relay/macro";
 import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
-import { selectLiveState } from "../liveState";
 
 /**
  * @RelayResolver

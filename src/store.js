@@ -17,12 +17,12 @@ const STATE_QUERY = graphql`
   query storeStateQuery {
     # Relay requires that we have a server field in here.
     dummy_server_field
-    FLUX_all_todos {
+    all_todos {
       id
       text
       completed
     }
-    FLUX_visibility_filter
+    visibility_filter
   }
 `;
 
@@ -101,12 +101,12 @@ class CompatibilityStore {
   // shape.
   _stateFromQuery(data) {
     return {
-      todos: data.FLUX_all_todos.map((todo) => ({
+      todos: data.all_todos.map((todo) => ({
         text: todo.text,
-        id: relayIdToReduxId(todo.id),
+        id: todo.id,
         completed: todo.completed,
       })),
-      visibilityFilter: data.FLUX_visibility_filter,
+      visibilityFilter: data.visibility_filter,
     };
   }
 }
@@ -115,15 +115,11 @@ function relayIdToReduxId(id) {
   // This is to work around the fact that Relay resolvers to client types
   // namespace their IDs. Here we un-prefix them. We need to find a fix for
   // this is Relay itself.
-  const regex = /^client:FLUXTodo:(.*)$/;
+  const regex = /^client:Todo:(.*)$/;
   if (!regex.test(id)) {
     throw new Error("Expected special client id syntax.");
   }
   return id.replace(regex, "$1");
-}
-
-function reduxIdToRelayId(id) {
-  return `client:FLUXTodo:${id}`;
 }
 
 function setVisibilityFilter(filter) {
@@ -133,12 +129,12 @@ function setVisibilityFilter(filter) {
         query storeVisibilityFilterUpdaterQuery @updatable {
           # Unused server field to make Relay compiler happy.
           dummy_server_field
-          FLUX_visibility_filter
+          visibility_filter
         }
       `,
       {}
     );
-    updatableData.FLUX_visibility_filter = filter;
+    updatableData.visibility_filter = filter;
   });
 }
 
@@ -148,24 +144,23 @@ function addTodo(text) {
   commitLocalUpdate(RelayEnvironment, (store) => {
     // readUpdatableQuery_EXPERIMENTAL Does not yet support creating new nodes.
     const root = store.getRoot();
-    const dataID = reduxIdToRelayId(String(nextID++));
+    const dataID = `client:Todo:${nextID++}`;
     const newTodo = store.create(dataID, "FLUXTodo");
     newTodo.setValue(text, "text");
     newTodo.setValue(dataID, "id");
     newTodo.setValue(false, "completed");
-    const todos = root.getLinkedRecords("FLUX_all_todos") ?? [];
-    root.setLinkedRecords([...todos, newTodo], "FLUX_all_todos");
+    const todos = root.getLinkedRecords("all_todos") ?? [];
+    root.setLinkedRecords([...todos, newTodo], "all_todos");
   });
 }
 
 function deleteTodo(id) {
   commitLocalUpdate(RelayEnvironment, (store) => {
-    const relayId = reduxIdToRelayId(id);
     const root = store.getRoot();
-    const todos = root.getLinkedRecords("FLUX_all_todos") ?? [];
-    const newTodos = todos.filter((todo) => todo.getDataID() !== relayId);
-    root.setLinkedRecords(newTodos, "FLUX_all_todos");
-    store.delete(relayId);
+    const todos = root.getLinkedRecords("all_todos") ?? [];
+    const newTodos = todos.filter((todo) => todo.getDataID() !== id);
+    root.setLinkedRecords(newTodos, "all_todos");
+    store.delete(id);
   });
 }
 
@@ -183,8 +178,7 @@ function editTodo(id, text) {
 // TODO: Should we use an updatable fragment here?
 function completeTodo(id) {
   commitLocalUpdate(RelayEnvironment, (store) => {
-    const relayId = reduxIdToRelayId(id);
-    const todo = store.get(relayId);
+    const todo = store.get(id);
     if (todo == null) {
       throw new Error("Tried to reference a non-existent todo");
     }
@@ -200,18 +194,18 @@ function completeAllTodos(id) {
         query storeCompleteAllQuery @updatable {
           # Unused server field to make Relay compiler happy.
           dummy_server_field
-          FLUX_all_todos {
+          all_todos {
             completed
           }
         }
       `,
       {}
     );
-    const areAllMarked = updatableData.FLUX_all_todos.every(
+    const areAllMarked = updatableData.all_todos.every(
       (todo) => todo.completed
     );
 
-    for (const todo of updatableData.FLUX_all_todos) {
+    for (const todo of updatableData.all_todos) {
       todo.completed = !areAllMarked;
     }
   });
@@ -224,7 +218,7 @@ function clearCompleted(id) {
         query storeClearCompletedQuery @updatable {
           # Unused server field to make Relay compiler happy.
           dummy_server_field
-          FLUX_all_todos {
+          all_todos {
             completed
           }
         }
@@ -233,7 +227,7 @@ function clearCompleted(id) {
     );
 
     // TODO: Delete the records for the completed todos from the store.
-    updatableData.FLUX_all_todos = updatableData.FLUX_all_todos.filter(
+    updatableData.all_todos = updatableData.all_todos.filter(
       (todo) => !todo.completed
     );
   });

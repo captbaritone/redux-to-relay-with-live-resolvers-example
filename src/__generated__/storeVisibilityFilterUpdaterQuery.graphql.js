@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d7b0a4ed4e2db30d0c5b553b4f9614d5>>
+ * @generated SignedSource<<dc2ccfb798999735ba1f2bce64f4ee4e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -29,7 +29,7 @@ var node = {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "FLUX_visibility_filter",
+            "name": "visibility_filter",
             "storageKey": null
           }
         ]
@@ -41,6 +41,6 @@ var node = {
   "kind": "UpdatableQuery"
 };
 
-node.hash = "dad1c993fa8f7c63a1bfa6a193d00187";
+node.hash = "812c56897927c046e11e4ca66a50f3a6";
 
 module.exports = node;

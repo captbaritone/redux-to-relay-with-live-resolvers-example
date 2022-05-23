@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5bfe4efd90b4763d37805f9703318f05>>
+ * @generated SignedSource<<963e146c529eb6409293fa84bad83d62>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,39 +15,27 @@ var node = {
   "name": "RootTodosCountResolver",
   "selections": [
     {
-      "kind": "ClientEdgeToClientObject",
-      "concreteType": "Todo",
-      "backingField": {
-        "alias": null,
-        "args": null,
-        "fragment": {
+      "kind": "ClientExtension",
+      "selections": [
+        {
+          "alias": null,
           "args": null,
-          "kind": "FragmentSpread",
-          "name": "RootAllTodosResolver"
-        },
-        "kind": "RelayLiveResolver",
-        "name": "all_todos",
-        "resolverModule": require('./../RootAllTodosResolver.js'),
-        "path": "all_todos"
-      },
-      "linkedField": {
-        "alias": null,
-        "args": null,
-        "concreteType": "Todo",
-        "kind": "LinkedField",
-        "name": "all_todos",
-        "plural": true,
-        "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "__typename",
-            "storageKey": null
-          }
-        ],
-        "storageKey": null
-      }
+          "concreteType": "Todo",
+          "kind": "LinkedField",
+          "name": "all_todos",
+          "plural": true,
+          "selections": [
+            {
+              "alias": null,
+              "args": null,
+              "kind": "ScalarField",
+              "name": "__typename",
+              "storageKey": null
+            }
+          ],
+          "storageKey": null
+        }
+      ]
     }
   ],
   "type": "Root",
