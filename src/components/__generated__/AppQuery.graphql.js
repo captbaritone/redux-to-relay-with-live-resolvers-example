@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4db51c7272a2db8d68ee469e676e3415>>
+ * @generated SignedSource<<d1f8c57b31a7f54f306edf20b3f1bca3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -41,10 +41,6 @@ return {
       {
         "kind": "ClientExtension",
         "selections": [
-          (v0/*: any*/),
-          (v0/*: any*/),
-          (v0/*: any*/),
-          (v0/*: any*/),
           (v0/*: any*/),
           (v0/*: any*/)
         ]
