@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9a1de6a31e4be006e22bbe70fc4eabb3>>
+ * @generated SignedSource<<4db51c7272a2db8d68ee469e676e3415>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,13 +13,6 @@ var v0 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "dummy_server_field",
-  "storageKey": null
-},
-v1 = {
-  "alias": null,
-  "args": null,
-  "kind": "ScalarField",
   "name": "__id",
   "storageKey": null
 };
@@ -30,7 +23,6 @@ return {
     "metadata": null,
     "name": "AppQuery",
     "selections": [
-      (v0/*: any*/),
       {
         "args": null,
         "kind": "FragmentSpread",
@@ -46,31 +38,30 @@ return {
     "kind": "Operation",
     "name": "AppQuery",
     "selections": [
-      (v0/*: any*/),
       {
         "kind": "ClientExtension",
         "selections": [
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/)
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/)
         ]
       }
     ]
   },
   "params": {
-    "cacheID": "9d0d08595f50379b1babb89705141ecc",
+    "cacheID": "a86e1a5d02417cf3a1573ede6b647853",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  dummy_server_field\n}\n"
+    "text": null
   }
 };
 })();
 
-node.hash = "069a6feda633afa384ccddde43b0c2f5";
+node.hash = "c2ffb49598436a136b1be75ca1c203a7";
 
 module.exports = node;

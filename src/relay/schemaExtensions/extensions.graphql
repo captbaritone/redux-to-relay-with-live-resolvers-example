@@ -1,3 +1,14 @@
 type Todo {
   id: ID!
 }
+
+type FLUXTodo {
+  id: ID!
+  completed: Boolean
+  text: String
+}
+
+extend type Root {
+  FLUX_visibility_filter: String
+  FLUX_all_todos: [FLUXTodo]
+}
