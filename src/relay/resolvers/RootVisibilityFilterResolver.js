@@ -1,6 +1,5 @@
 import graphql from "babel-plugin-relay/macro";
 import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
-import { getVisibilityFilter } from "../../selectors";
 import { selectLiveState } from "../liveState";
 
 /**
@@ -24,5 +23,5 @@ export default function RootVisibilityFilterResolver(key) {
     `,
     key
   );
-  return selectLiveState(getVisibilityFilter);
+  return selectLiveState((state) => state.visibilityFilter);
 }

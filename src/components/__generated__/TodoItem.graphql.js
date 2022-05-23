@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<d3814d700270ef3ec96b4fe9271eb669>>
+ * @generated SignedSource<<413c54698b7d505b278749d32fe76051>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -44,7 +44,7 @@ var node = {
       "kind": "ClientExtension",
       "selections": [
         {
-          "alias": "redux_id",
+          "alias": null,
           "args": null,
           "kind": "ScalarField",
           "name": "id",
@@ -57,6 +57,6 @@ var node = {
   "abstractKey": null
 };
 
-node.hash = "044b9dbef6b68d05fd7a8bbefb9c18db";
+node.hash = "8517b47725e3419758f9773054e4a69a";
 
 module.exports = node;

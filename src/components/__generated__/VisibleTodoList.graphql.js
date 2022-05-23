@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<21b4ce227ee0c292f9489b0700363794>>
+ * @generated SignedSource<<41c591e323dfb4196bc8b1f61187d529>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,7 @@ var node = {
           "kind": "FragmentSpread",
           "name": "RootVisibleTodosResolver"
         },
-        "kind": "RelayLiveResolver",
+        "kind": "RelayResolver",
         "name": "visible_todos",
         "resolverModule": require('./../../relay/resolvers/RootVisibleTodosResolver.js'),
         "path": "filteredTodos"

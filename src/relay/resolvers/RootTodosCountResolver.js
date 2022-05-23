@@ -7,18 +7,19 @@ import { selectLiveState } from "../liveState";
  * @fieldName todos_count
  * @rootFragment RootTodosCountResolver
  * @onType Root
- * @live
  *
  * The total number of todos.
  */
 export default function RootTodosCountResolver(key) {
-  readFragment(
+  const data = readFragment(
     graphql`
       fragment RootTodosCountResolver on Root {
-        dummy_server_field
+        all_todos {
+          __typename
+        }
       }
     `,
     key
   );
-  return selectLiveState((state) => state.todos.length);
+  return data.all_todos.length;
 }

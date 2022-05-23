@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<458472d98ee8c402ea23bbc898fa0874>>
+ * @generated SignedSource<<5c758c0ef55f80073d15bea70000310d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -43,12 +43,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "9c8a2a234e3f29a99027bd93cb8d7f4f",
+    "cacheID": "8be123c902b48b9d0c836280823a460d",
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  dummy_server_field\n  ...MainSection\n}\n\nfragment FilterLink on Root {\n  ...RootVisibilityFilterResolver\n}\n\nfragment Footer on Root {\n  ...RootTodosCountResolver\n  ...RootCompletedTodosCountResolver\n  ...FilterLink\n}\n\nfragment MainSection on Root {\n  ...RootTodosCountResolver\n  ...RootCompletedTodosCountResolver\n  ...VisibleTodoList\n  ...Footer\n}\n\nfragment RootCompletedTodosCountResolver on Root {\n  dummy_server_field\n}\n\nfragment RootTodosCountResolver on Root {\n  dummy_server_field\n}\n\nfragment RootVisibilityFilterResolver on Root {\n  dummy_server_field\n}\n\nfragment RootVisibleTodosResolver on Root {\n  dummy_server_field\n}\n\nfragment VisibleTodoList on Root {\n  ...RootVisibleTodosResolver\n}\n"
+    "text": "query AppQuery {\n  dummy_server_field\n  ...MainSection\n}\n\nfragment FilterLink on Root {\n  ...RootVisibilityFilterResolver\n}\n\nfragment Footer on Root {\n  ...RootTodosCountResolver\n  ...RootCompletedTodosCountResolver\n  ...FilterLink\n}\n\nfragment MainSection on Root {\n  ...RootTodosCountResolver\n  ...RootCompletedTodosCountResolver\n  ...VisibleTodoList\n  ...Footer\n}\n\nfragment RootAllTodosResolver on Root {\n  dummy_server_field\n}\n\nfragment RootCompletedTodosCountResolver on Root {\n  ...RootAllTodosResolver\n}\n\nfragment RootTodosCountResolver on Root {\n  ...RootAllTodosResolver\n}\n\nfragment RootVisibilityFilterResolver on Root {\n  dummy_server_field\n}\n\nfragment RootVisibleTodosResolver on Root {\n  ...RootAllTodosResolver\n  ...RootVisibilityFilterResolver\n}\n\nfragment VisibleTodoList on Root {\n  ...RootVisibleTodosResolver\n}\n"
   }
 };
 })();

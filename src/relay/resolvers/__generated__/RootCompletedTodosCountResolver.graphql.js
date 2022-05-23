@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9015a059065f57e6a46304f6bd510989>>
+ * @generated SignedSource<<039b7f79aa003b8d618bc00beb56e2ea>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,17 +15,51 @@ var node = {
   "name": "RootCompletedTodosCountResolver",
   "selections": [
     {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "dummy_server_field",
-      "storageKey": null
+      "kind": "ClientEdgeToClientObject",
+      "concreteType": "Todo",
+      "backingField": {
+        "alias": null,
+        "args": null,
+        "fragment": {
+          "args": null,
+          "kind": "FragmentSpread",
+          "name": "RootAllTodosResolver"
+        },
+        "kind": "RelayLiveResolver",
+        "name": "all_todos",
+        "resolverModule": require('./../RootAllTodosResolver.js'),
+        "path": "all_todos"
+      },
+      "linkedField": {
+        "alias": null,
+        "args": null,
+        "concreteType": "Todo",
+        "kind": "LinkedField",
+        "name": "all_todos",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "fragment": {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "TodoCompletedResolver"
+            },
+            "kind": "RelayResolver",
+            "name": "completed",
+            "resolverModule": require('./../TodoCompletedResolver.js'),
+            "path": "completed"
+          }
+        ],
+        "storageKey": null
+      }
     }
   ],
   "type": "Root",
   "abstractKey": null
 };
 
-node.hash = "1c58d50d805c188608b56e2dac506afe";
+node.hash = "27e77428f6fe95c4837bf1b9f1cc87fa";
 
 module.exports = node;
