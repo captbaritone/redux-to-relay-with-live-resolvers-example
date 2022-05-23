@@ -1,0 +1,9 @@
+# Dummy server schema.
+# For this example app we are only using client state.
+schema {
+  query: Root
+}
+
+type Root {
+  dummy_server_field: String
+}

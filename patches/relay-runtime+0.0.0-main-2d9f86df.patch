@@ -1,0 +1,33 @@
+diff --git a/node_modules/relay-runtime/lib/store/RelayReader.js b/node_modules/relay-runtime/lib/store/RelayReader.js
+index 054a27e..e2db120 100644
+--- a/node_modules/relay-runtime/lib/store/RelayReader.js
++++ b/node_modules/relay-runtime/lib/store/RelayReader.js
+@@ -479,7 +479,7 @@ var RelayReader = /*#__PURE__*/function () {
+ 
+     var _field$alias;
+ 
+-    var resolverModule = field.resolverModule,
++    var resolverModule = field.resolverModule.default,
+         fragment = field.fragment;
+     var storageKey = getStorageKey(fragment, this._variables);
+     var resolverID = ClientID.generateClientID(RelayModernRecord.getDataID(record), storageKey); // Found when reading the resolver fragment, which can happen either when
+diff --git a/node_modules/relay-runtime/lib/store/experimental-live-resolvers/LiveResolverCache.js b/node_modules/relay-runtime/lib/store/experimental-live-resolvers/LiveResolverCache.js
+index 5c325fb..4210c95 100644
+--- a/node_modules/relay-runtime/lib/store/experimental-live-resolvers/LiveResolverCache.js
++++ b/node_modules/relay-runtime/lib/store/experimental-live-resolvers/LiveResolverCache.js
+@@ -351,10 +351,12 @@ var LiveResolverCache = /*#__PURE__*/function () {
+     var key = generateClientObjectClientID(typeName, id);
+ 
+     var recordSource = this._getRecordSource();
++    if(!recordSource.has(key)) {
+ 
+-    var newRecord = RelayModernRecord.create(key, typeName);
+-    RelayModernRecord.setValue(newRecord, 'id', id);
+-    recordSource.set(key, newRecord);
++      var newRecord = RelayModernRecord.create(key, typeName);
++      RelayModernRecord.setValue(newRecord, 'id', id);
++      recordSource.set(key, newRecord);
++    }
+     return key;
+   } // Given the set of possible invalidated DataID
+   // (Example may be: records from the reverted optimistic update)
