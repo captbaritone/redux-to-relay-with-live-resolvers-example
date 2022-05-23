@@ -20,8 +20,7 @@ export default function TodoSelfResolver(key) {
     `,
     key
   );
-  const numericId = parseInt(id, 10);
   return selectLiveState((state) => {
-    return state.todos.find((todo) => todo.id === numericId);
+    return state.todos.find((todo) => todo.id === id);
   });
 }
