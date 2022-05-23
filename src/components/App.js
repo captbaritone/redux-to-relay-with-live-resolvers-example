@@ -11,8 +11,7 @@ function App() {
         # Make Relay happy by adding at least one
         # server field.
         dummy_server_field
-
-        # TODO: Start reading data from Relay
+        ...MainSection
       }
     `
   );

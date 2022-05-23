@@ -1,25 +1,30 @@
-import React from "react";
+import graphql from "babel-plugin-relay/macro";
+import useFragment from "react-relay/lib/relay-hooks/useFragment";
 import classnames from "classnames";
+
 import { connect } from "react-redux";
 import { setVisibilityFilter } from "../actions";
-import { getVisibilityFilter } from "../selectors";
 
-const Link = ({ active, children, setFilter }) => {
+function FilterLink({ query: queryKey, filter, children, setFilter }) {
+  const data = useFragment(
+    graphql`
+      fragment FilterLink on Root {
+        visibility_filter
+      }
+    `,
+    queryKey
+  );
   return (
     // eslint-disable jsx-a11y/anchor-is-valid
     <a
-      className={classnames({ selected: active })}
+      className={classnames({ selected: data.visibility_filter === filter })}
       style={{ cursor: "pointer" }}
       onClick={() => setFilter()}
     >
       {children}
     </a>
   );
-};
-
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === getVisibilityFilter(state),
-});
+}
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   setFilter: () => {
@@ -27,4 +32,4 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Link);
+export default connect(null, mapDispatchToProps)(FilterLink);

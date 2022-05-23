@@ -4,9 +4,22 @@ import VisibleTodoList from "./VisibleTodoList";
 import { connect } from "react-redux";
 import * as TodoActions from "../actions";
 import { bindActionCreators } from "redux";
-import { getCompletedTodoCount } from "../selectors";
+import useFragment from "react-relay/lib/relay-hooks/useFragment";
+import graphql from "babel-plugin-relay/macro";
 
-const MainSection = ({ todosCount, completedCount, actions }) => {
+const MainSection = ({ query: queryKey, actions }) => {
+  const data = useFragment(
+    graphql`
+      fragment MainSection on Root {
+        todosCount: todos_count
+        completedCount: completed_todos_count
+        ...VisibleTodoList
+        ...Footer
+      }
+    `,
+    queryKey
+  );
+  const { todosCount, completedCount } = data;
   return (
     <section className="main">
       {!!todosCount && (
@@ -20,25 +33,16 @@ const MainSection = ({ todosCount, completedCount, actions }) => {
           <label onClick={actions.completeAllTodos} />
         </span>
       )}
-      <VisibleTodoList />
+      <VisibleTodoList query={data} />
       {!!todosCount && (
-        <Footer
-          completedCount={completedCount}
-          activeCount={todosCount - completedCount}
-          onClearCompleted={actions.clearCompleted}
-        />
+        <Footer query={data} onClearCompleted={actions.clearCompleted} />
       )}
     </section>
   );
 };
 
-const mapStateToProps = (state) => ({
-  todosCount: state.todos.length,
-  completedCount: getCompletedTodoCount(state),
-});
-
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(TodoActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainSection);
+export default connect(null, mapDispatchToProps)(MainSection);
