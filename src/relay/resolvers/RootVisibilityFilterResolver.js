@@ -1,4 +1,3 @@
-import { getVisibilityFilter } from "../../selectors";
 import { selectLiveState } from "../liveState";
 
 /**
@@ -10,5 +9,5 @@ import { selectLiveState } from "../liveState";
  * The currently active visibility filter.
  */
 export default function RootVisibilityFilterResolver() {
-  return selectLiveState(getVisibilityFilter);
+  return selectLiveState((state) => state.visibilityFilter);
 }

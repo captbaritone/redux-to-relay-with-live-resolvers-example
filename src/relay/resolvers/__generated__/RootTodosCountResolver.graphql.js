@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8b6457304aea68456d16c194192f4a97>>
+ * @generated SignedSource<<eaf4f8e4ea4b5a1b38c6961af774fc80>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,43 +14,34 @@ var node = {
   "metadata": {
     "hasClientEdges": true
   },
-  "name": "VisibleTodoList",
+  "name": "RootTodosCountResolver",
   "selections": [
     {
       "kind": "ClientEdgeToClientObject",
       "concreteType": "Todo",
       "backingField": {
-        "alias": "filteredTodos",
+        "alias": null,
         "args": null,
-        "fragment": {
-          "args": null,
-          "kind": "FragmentSpread",
-          "name": "RootVisibleTodosResolver"
-        },
-        "kind": "RelayResolver",
-        "name": "visible_todos",
-        "resolverModule": require('./../../relay/resolvers/RootVisibleTodosResolver.js'),
-        "path": "filteredTodos"
+        "fragment": null,
+        "kind": "RelayLiveResolver",
+        "name": "all_todos",
+        "resolverModule": require('./../RootAllTodosResolver.js'),
+        "path": "all_todos"
       },
       "linkedField": {
-        "alias": "filteredTodos",
+        "alias": null,
         "args": null,
         "concreteType": "Todo",
         "kind": "LinkedField",
-        "name": "visible_todos",
+        "name": "all_todos",
         "plural": true,
         "selections": [
           {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
-            "name": "id",
+            "name": "__typename",
             "storageKey": null
-          },
-          {
-            "args": null,
-            "kind": "FragmentSpread",
-            "name": "TodoItem"
           }
         ],
         "storageKey": null
@@ -61,6 +52,6 @@ var node = {
   "abstractKey": null
 };
 
-node.hash = "8c590cbeec14baf1e51f66fbce780f5f";
+node.hash = "d659d37c20d7ba7dd8afce6e12007709";
 
 module.exports = node;
