@@ -1,11 +1,23 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 import { connect } from "react-redux";
+import graphql from "babel-plugin-relay/macro";
+import useFragment from "react-relay/lib/relay-hooks/useFragment";
 import { bindActionCreators } from "redux";
 import * as TodoActions from "../actions";
-import { getVisibleTodos } from "../selectors";
 
-const TodoList = ({ filteredTodos, actions }) => {
+const TodoList = ({ query: queryKey, actions }) => {
+  const { filteredTodos } = useFragment(
+    graphql`
+      fragment VisibleTodoList on Root {
+        filteredTodos: visible_todos {
+          id
+          ...TodoItem
+        }
+      }
+    `,
+    queryKey
+  );
   return (
     <ul className="todo-list">
       {filteredTodos.map((todo) => (
@@ -15,12 +27,8 @@ const TodoList = ({ filteredTodos, actions }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  filteredTodos: getVisibleTodos(state),
-});
-
 const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(TodoActions, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(null, mapDispatchToProps)(TodoList);
