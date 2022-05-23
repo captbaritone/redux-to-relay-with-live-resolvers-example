@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<5192d70bf8da65d1f99b2518021f0786>>
+ * @generated SignedSource<<1b1784f1e1cb22d0d2d3cda9aa977a81>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -21,11 +21,18 @@ var node = {
           {
             "alias": null,
             "args": null,
-            "concreteType": "FLUXTodo",
+            "concreteType": "Todo",
             "kind": "LinkedField",
-            "name": "FLUX_all_todos",
+            "name": "all_todos",
             "plural": true,
             "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "kind": "ScalarField",
+                "name": "__id",
+                "storageKey": null
+              },
               {
                 "alias": null,
                 "args": null,
@@ -45,6 +52,6 @@ var node = {
   "kind": "UpdatableQuery"
 };
 
-node.hash = "83adfcbe887bca1315b466f53edbd02b";
+node.hash = "c830a9c219ec572a072c18bb9174a9fb";
 
 module.exports = node;

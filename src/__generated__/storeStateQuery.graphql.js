@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4bd226ddbfbf7f7c68dc3daf72a858d4>>
+ * @generated SignedSource<<ba212761ec0219c4a8e61a2221f18041>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -16,9 +16,9 @@ var v0 = [
       {
         "alias": null,
         "args": null,
-        "concreteType": "FLUXTodo",
+        "concreteType": "Todo",
         "kind": "LinkedField",
-        "name": "FLUX_all_todos",
+        "name": "all_todos",
         "plural": true,
         "selections": [
           {
@@ -49,7 +49,7 @@ var v0 = [
         "alias": null,
         "args": null,
         "kind": "ScalarField",
-        "name": "FLUX_visibility_filter",
+        "name": "visibility_filter",
         "storageKey": null
       }
     ]
@@ -83,6 +83,6 @@ return {
 };
 })();
 
-node.hash = "03a077b6e67031b2a3f566573cfd60c5";
+node.hash = "b4dcba6cf943125b5ab07d0ee4437bf0";
 
 module.exports = node;
