@@ -1,8 +1,25 @@
 import React, { useCallback, useState } from "react";
 import classnames from "classnames";
 import TodoTextInput from "./TodoTextInput";
+import graphql from "babel-plugin-relay/macro";
+import useFragment from "react-relay/lib/relay-hooks/useFragment";
 
-export default function TodoItem({ editTodo, deleteTodo, todo, completeTodo }) {
+export default function TodoItem({
+  todo: todoKey,
+  editTodo,
+  deleteTodo,
+  completeTodo,
+}) {
+  const todo = useFragment(
+    graphql`
+      fragment TodoItem on Todo {
+        id
+        completed
+        text
+      }
+    `,
+    todoKey
+  );
   const [editing, setEditing] = useState(false);
 
   const handleDoubleClick = () => {
