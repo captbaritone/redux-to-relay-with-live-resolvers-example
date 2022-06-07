@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<f62388c4c4de6669243982128aee6cd0>>
+ * @generated SignedSource<<5a9ce4e5fa4ea9de8cde8f93659e80da>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -22,7 +22,7 @@ var node = {
         "kind": "FragmentSpread",
         "name": "RootTodosCountResolver"
       },
-      "kind": "RelayResolver",
+      "kind": "RelayLiveResolver",
       "name": "todos_count",
       "resolverModule": require('./../../relay/resolvers/RootTodosCountResolver.js'),
       "path": "todosCount"

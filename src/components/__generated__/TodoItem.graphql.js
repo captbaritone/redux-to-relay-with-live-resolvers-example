@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<bf50596bc7a5b31d178cb797c57782f1>>
+ * @generated SignedSource<<413c54698b7d505b278749d32fe76051>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -14,19 +14,6 @@ var node = {
   "metadata": null,
   "name": "TodoItem",
   "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "fragment": {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "TodoReduxIdResolver"
-      },
-      "kind": "RelayResolver",
-      "name": "redux_id",
-      "resolverModule": require('./../../relay/resolvers/TodoReduxIdResolver.js'),
-      "path": "redux_id"
-    },
     {
       "alias": null,
       "args": null,
@@ -52,12 +39,24 @@ var node = {
       "name": "text",
       "resolverModule": require('./../../relay/resolvers/TodoTextResolver.js'),
       "path": "text"
+    },
+    {
+      "kind": "ClientExtension",
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "kind": "ScalarField",
+          "name": "id",
+          "storageKey": null
+        }
+      ]
     }
   ],
   "type": "Todo",
   "abstractKey": null
 };
 
-node.hash = "971743ba8a1710896589e456511374c1";
+node.hash = "8517b47725e3419758f9773054e4a69a";
 
 module.exports = node;

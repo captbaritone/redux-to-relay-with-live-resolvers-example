@@ -1,7 +1,7 @@
 import graphql from "babel-plugin-relay/macro";
 import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
-import { selectLiveState } from "../liveState";
-import { getVisibleTodos } from "../../selectors";
+import { selectLiveDB } from "../liveState";
+import { DB } from "../../db";
 
 /**
  * @RelayResolver
@@ -25,7 +25,13 @@ export default function RootVisibleTodosResolver(key) {
     `,
     key
   );
-  return selectLiveState((state) => {
-    return getVisibleTodos(state).map((todo) => todo.id);
+  return selectLiveDB(() => {
+    // TODO: Apply filter
+    const statement = DB.exec("SELECT id FROM todos;")[0];
+    if (statement == null) {
+      return [];
+    }
+    const ids = statement.values.map(([id]) => String(id));
+    return ids;
   });
 }

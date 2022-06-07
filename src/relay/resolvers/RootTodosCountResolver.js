@@ -1,6 +1,7 @@
 import graphql from "babel-plugin-relay/macro";
 import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
-import { selectLiveState } from "../liveState";
+import { selectLiveDB } from "../liveState";
+import { DB } from "../../db";
 
 /**
  * @RelayResolver
@@ -20,5 +21,7 @@ export default function RootTodosCountResolver(key) {
     `,
     key
   );
-  return selectLiveState((state) => state.todos.length);
+  return selectLiveDB(() => {
+    return DB.exec("SELECT COUNT(*) FROM todos;")[0].values[0][0];
+  });
 }

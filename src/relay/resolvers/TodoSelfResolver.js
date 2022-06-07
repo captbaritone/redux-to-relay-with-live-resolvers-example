@@ -1,6 +1,7 @@
 import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
 import graphql from "babel-plugin-relay/macro";
-import { selectLiveState } from "../liveState";
+import { selectLiveDB } from "../liveState";
+import { DB } from "../../db";
 
 /**
  * @RelayResolver
@@ -21,7 +22,15 @@ export default function TodoSelfResolver(key) {
     key
   );
   const numericId = parseInt(id, 10);
-  return selectLiveState((state) => {
-    return state.todos.find((todo) => todo.id === numericId);
+  return selectLiveDB(() => {
+    const statement = DB.prepare(
+      "SELECT id, text, completed FROM todos where id = :id;"
+    );
+    const result = statement.getAsObject({ ":id": numericId });
+    return {
+      id: String(result.id),
+      completed: Boolean(result.completed),
+      text: result.text,
+    };
   });
 }

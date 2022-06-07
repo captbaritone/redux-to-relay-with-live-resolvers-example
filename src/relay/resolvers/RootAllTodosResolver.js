@@ -24,7 +24,9 @@ export default function RootAllTodosResolver(key) {
     `,
     key
   );
-  return selectLiveState((state) => {
-    return state.todos.map((todo) => todo.id);
+  return selectLiveDB(() => {
+    const ids = DB.exec("SELECT id FROM todos;")[0].values[0];
+    console.log({ ids });
+    return filter;
   });
 }
