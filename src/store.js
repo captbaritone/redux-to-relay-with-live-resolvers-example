@@ -15,12 +15,10 @@ import { createOperationDescriptor } from "relay-runtime";
 
 const STATE_QUERY = graphql`
   query storeStateQuery {
-    all_todos {
-      id
-      text
-      completed
-    }
-    visibility_filter
+    ...selectorsGetVisibilityFilter
+    ...selectorsGetVisibleTodos
+    ...selectorsGetCompletedTodoCount
+    ...selectorsGetTodoCount
   }
 `;
 
@@ -30,7 +28,7 @@ class CompatibilityStore {
   constructor() {
     this._callbacks = [];
 
-    // Relay does not yet have an API for innitializing the default
+    // Relay does not yet have an API for initializing the default
     // value in client schema extensions, so we'll set the default values
     // using actions:
     this.dispatch({ type: SET_VISIBILITY_FILTER, filter: SHOW_ALL });
@@ -98,26 +96,8 @@ class CompatibilityStore {
   // Maps a Relay query to the legacy Redux state object
   // shape.
   _stateFromQuery(data) {
-    return {
-      todos: data.all_todos.map((todo) => ({
-        text: todo.text,
-        id: todo.id,
-        completed: todo.completed,
-      })),
-      visibilityFilter: data.visibility_filter,
-    };
+    return data;
   }
-}
-
-function relayIdToReduxId(id) {
-  // This is to work around the fact that Relay resolvers to client types
-  // namespace their IDs. Here we un-prefix them. We need to find a fix for
-  // this is Relay itself.
-  const regex = /^client:Todo:(.*)$/;
-  if (!regex.test(id)) {
-    throw new Error("Expected special client id syntax.");
-  }
-  return id.replace(regex, "$1");
 }
 
 function setVisibilityFilter(filter) {
