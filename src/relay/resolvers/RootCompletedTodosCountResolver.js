@@ -1,27 +1,17 @@
-import graphql from "babel-plugin-relay/macro";
-import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
+import { selectLiveDB } from "../../store";
+import { DB } from "../../db";
 
 /**
  * @RelayResolver
  * @fieldName completed_todos_count
- * @rootFragment RootCompletedTodosCountResolver
  * @onType Root
+ * @live
  *
  * The total number of completed todos.
  */
 export default function RootCompletedTodosCountResolver(key) {
-  const data = readFragment(
-    graphql`
-      fragment RootCompletedTodosCountResolver on Root {
-        all_todos {
-          completed
-        }
-      }
-    `,
-    key
-  );
-  return data.all_todos.reduce(
-    (count, todo) => (todo.completed ? count + 1 : count),
-    0
-  );
+  return selectLiveDB(() => {
+    return DB.first("SELECT count(*) as cnt FROM todos WHERE completed = true;")
+      .cnt;
+  });
 }

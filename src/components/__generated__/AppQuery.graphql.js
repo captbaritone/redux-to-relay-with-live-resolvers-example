@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<481ef6ac0ae37c35eb00b895e2b303cb>>
+ * @generated SignedSource<<4db51c7272a2db8d68ee469e676e3415>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,15 @@
 
 'use strict';
 
-var node = {
+var node = (function(){
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "__id",
+  "storageKey": null
+};
+return {
   "fragment": {
     "argumentDefinitions": [],
     "kind": "Fragment",
@@ -33,45 +41,12 @@ var node = {
       {
         "kind": "ClientExtension",
         "selections": [
-          {
-            "alias": null,
-            "args": null,
-            "concreteType": "Todo",
-            "kind": "LinkedField",
-            "name": "all_todos",
-            "plural": true,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "__typename",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "completed",
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
-          },
-          {
-            "alias": null,
-            "args": null,
-            "kind": "ScalarField",
-            "name": "visibility_filter",
-            "storageKey": null
-          }
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/),
+          (v0/*: any*/)
         ]
       }
     ]
@@ -85,6 +60,7 @@ var node = {
     "text": null
   }
 };
+})();
 
 node.hash = "c2ffb49598436a136b1be75ca1c203a7";
 

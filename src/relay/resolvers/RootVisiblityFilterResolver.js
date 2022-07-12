@@ -3,14 +3,16 @@ import { DB } from "../../db";
 
 /**
  * @RelayResolver
- * @fieldName todos_count
+ * @fieldName visibility_filter
  * @onType Root
  * @live
  *
- * The count of all todos in the system.
+ * The current active visibility filter.
  */
 export default function RootVisibleTodosResolver() {
   return selectLiveDB(() => {
-    return DB.first("SELECT count(*) as cnt FROM todos;").cnt;
+    return DB.first(
+      "SELECT value FROM settings WHERE name = 'visibilityFilter' LIMIT 1;"
+    ).value;
   });
 }

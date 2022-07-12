@@ -6,6 +6,9 @@ import {
   SHOW_ACTIVE,
 } from "../../constants/TodoFilters";
 
+// NOTE: Another option would be to implement this as a @live resolver with a
+// SELECT WHERE query.
+
 /**
  * @RelayResolver
  * @fieldName visible_todos
@@ -28,20 +31,10 @@ export default function RootVisibleTodosResolver(key) {
     `,
     key
   );
-  return getVisibleTodos(data.visibility_filter, data.all_todos).map((todo) =>
-    relayIdToReduxId(todo.id)
-  );
-}
 
-function relayIdToReduxId(id) {
-  // This is to work around the fact that Relay resolvers to client types
-  // namespace their IDs. Here we un-prefix them. We need to find a fix for
-  // this is Relay itself.
-  const regex = /^client:Todo:(.*)$/;
-  if (!regex.test(id)) {
-    throw new Error("Expected special client id syntax.");
-  }
-  return id.replace(regex, "$1");
+  return getVisibleTodos(data.visibility_filter, data.all_todos).map(
+    (todo) => todo.id
+  );
 }
 
 const getVisibleTodos = (visibilityFilter, todos) => {

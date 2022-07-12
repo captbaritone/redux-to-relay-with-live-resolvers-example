@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<efbb1ad051c01424dc331dd86eea7e8e>>
+ * @generated SignedSource<<73f6c6da31e613cc104ee1559e667cad>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -11,43 +11,66 @@
 var node = {
   "argumentDefinitions": [],
   "kind": "Fragment",
-  "metadata": null,
+  "metadata": {
+    "hasClientEdges": true
+  },
   "name": "RootVisibleTodosResolver",
   "selections": [
+    {
+      "kind": "ClientEdgeToClientObject",
+      "concreteType": "Todo",
+      "backingField": {
+        "alias": null,
+        "args": null,
+        "fragment": null,
+        "kind": "RelayLiveResolver",
+        "name": "all_todos",
+        "resolverModule": require('./../RootAllTodosResolver.js'),
+        "path": "all_todos"
+      },
+      "linkedField": {
+        "alias": null,
+        "args": null,
+        "concreteType": "Todo",
+        "kind": "LinkedField",
+        "name": "all_todos",
+        "plural": true,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "fragment": {
+              "args": null,
+              "kind": "FragmentSpread",
+              "name": "TodoCompletedResolver"
+            },
+            "kind": "RelayResolver",
+            "name": "completed",
+            "resolverModule": require('./../TodoCompletedResolver.js'),
+            "path": "completed"
+          }
+        ],
+        "storageKey": null
+      }
+    },
     {
       "kind": "ClientExtension",
       "selections": [
         {
           "alias": null,
           "args": null,
-          "concreteType": "Todo",
-          "kind": "LinkedField",
-          "name": "all_todos",
-          "plural": true,
-          "selections": [
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "id",
-              "storageKey": null
-            },
-            {
-              "alias": null,
-              "args": null,
-              "kind": "ScalarField",
-              "name": "completed",
-              "storageKey": null
-            }
-          ],
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
+          "fragment": null,
+          "kind": "RelayLiveResolver",
           "name": "visibility_filter",
-          "storageKey": null
+          "resolverModule": require('./../RootVisiblityFilterResolver.js'),
+          "path": "visibility_filter"
         }
       ]
     }

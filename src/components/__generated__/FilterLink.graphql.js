@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cbef409d40570956292e1597474f89b3>>
+ * @generated SignedSource<<e46b32f8e684b7fc999cd8e97b62cc6f>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,9 +20,11 @@ var node = {
         {
           "alias": null,
           "args": null,
-          "kind": "ScalarField",
+          "fragment": null,
+          "kind": "RelayLiveResolver",
           "name": "visibility_filter",
-          "storageKey": null
+          "resolverModule": require('./../../relay/resolvers/RootVisiblityFilterResolver.js'),
+          "path": "visibility_filter"
         }
       ]
     }

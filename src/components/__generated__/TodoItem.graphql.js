@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<72cd5206897579e554f7fa3923d5d10b>>
+ * @generated SignedSource<<413c54698b7d505b278749d32fe76051>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,6 +15,32 @@ var node = {
   "name": "TodoItem",
   "selections": [
     {
+      "alias": null,
+      "args": null,
+      "fragment": {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "TodoCompletedResolver"
+      },
+      "kind": "RelayResolver",
+      "name": "completed",
+      "resolverModule": require('./../../relay/resolvers/TodoCompletedResolver.js'),
+      "path": "completed"
+    },
+    {
+      "alias": null,
+      "args": null,
+      "fragment": {
+        "args": null,
+        "kind": "FragmentSpread",
+        "name": "TodoTextResolver"
+      },
+      "kind": "RelayResolver",
+      "name": "text",
+      "resolverModule": require('./../../relay/resolvers/TodoTextResolver.js'),
+      "path": "text"
+    },
+    {
       "kind": "ClientExtension",
       "selections": [
         {
@@ -22,20 +48,6 @@ var node = {
           "args": null,
           "kind": "ScalarField",
           "name": "id",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "completed",
-          "storageKey": null
-        },
-        {
-          "alias": null,
-          "args": null,
-          "kind": "ScalarField",
-          "name": "text",
           "storageKey": null
         }
       ]

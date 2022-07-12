@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<e2b76ba916fc98496bc5fc56eb65f083>>
+ * @generated SignedSource<<a9da6f01950970227a07ffd19d4cd3fc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -15,35 +15,32 @@ var node = {
   "name": "Footer",
   "selections": [
     {
-      "alias": null,
-      "args": null,
-      "fragment": {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "RootTodosCountResolver"
-      },
-      "kind": "RelayResolver",
-      "name": "todos_count",
-      "resolverModule": require('./../../relay/resolvers/RootTodosCountResolver.js'),
-      "path": "todos_count"
-    },
-    {
-      "alias": null,
-      "args": null,
-      "fragment": {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "RootCompletedTodosCountResolver"
-      },
-      "kind": "RelayResolver",
-      "name": "completed_todos_count",
-      "resolverModule": require('./../../relay/resolvers/RootCompletedTodosCountResolver.js'),
-      "path": "completed_todos_count"
-    },
-    {
       "args": null,
       "kind": "FragmentSpread",
       "name": "FilterLink"
+    },
+    {
+      "kind": "ClientExtension",
+      "selections": [
+        {
+          "alias": null,
+          "args": null,
+          "fragment": null,
+          "kind": "RelayLiveResolver",
+          "name": "todos_count",
+          "resolverModule": require('./../../relay/resolvers/RootTodosCountResolver.js'),
+          "path": "todos_count"
+        },
+        {
+          "alias": null,
+          "args": null,
+          "fragment": null,
+          "kind": "RelayLiveResolver",
+          "name": "completed_todos_count",
+          "resolverModule": require('./../../relay/resolvers/RootCompletedTodosCountResolver.js'),
+          "path": "completed_todos_count"
+        }
+      ]
     }
   ],
   "type": "Root",
