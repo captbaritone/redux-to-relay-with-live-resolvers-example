@@ -13,11 +13,8 @@ import {
 // SELECT WHERE query.
 
 /**
- * @RelayResolver
- * @fieldName visible_todos
+ * @RelayResolver Root.visible_todos: [Todo]
  * @rootFragment RootVisibleTodosResolver
- * @onType Root
- * @edgeTo [Todo]
  *
  * Read all todos from the root of the query.
  */
@@ -54,10 +51,7 @@ const getVisibleTodos = (visibilityFilter, todos) => {
 };
 
 /**
- * @RelayResolver
- * @fieldName all_todos
- * @onType Root
- * @edgeTo [Todo]
+ * @RelayResolver Root.all_todos: [Todo]
  * @live
  *
  * All todos in the system.
@@ -69,9 +63,7 @@ export function all_todos() {
 }
 
 /**
- * @RelayResolver
- * @fieldName completed_todos_count
- * @onType Root
+ * @RelayResolver Root.completed_todos_count: Int
  * @live
  *
  * The total number of completed todos.
@@ -84,9 +76,7 @@ export function completed_todos_count(key) {
 }
 
 /**
- * @RelayResolver
- * @fieldName todos_count
- * @onType Root
+ * @RelayResolver Root.todos_count: Int
  * @live
  *
  * The count of all todos in the system.
@@ -98,9 +88,7 @@ export function todos_count() {
 }
 
 /**
- * @RelayResolver
- * @fieldName visibility_filter
- * @onType Root
+ * @RelayResolver Root.visibility_filter: String
  * @live
  *
  * The current active visibility filter.
