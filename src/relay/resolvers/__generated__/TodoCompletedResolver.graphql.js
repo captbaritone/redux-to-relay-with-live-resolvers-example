@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a695197c2c433b397f37d601a2a635a4>>
+ * @generated SignedSource<<72655a1df6a0e9c8451fd3be6f5b6239>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,7 +24,7 @@ var node = {
       },
       "kind": "RelayLiveResolver",
       "name": "self",
-      "resolverModule": require('./../TodoSelfResolver.js'),
+      "resolverModule": require('./../Todo').self,
       "path": "self"
     }
   ],

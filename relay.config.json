@@ -4,7 +4,8 @@
   "language": "javascript",
   "featureFlags": {
     "enable_relay_resolver_transform": true,
-    "enable_client_edges": { "kind": "enabled" }
+    "enable_client_edges": { "kind": "enabled" },
+    "use_named_imports_for_relay_resolvers": true
   },
   "schemaExtensions": ["./src/relay/schemaExtensions"]
 }

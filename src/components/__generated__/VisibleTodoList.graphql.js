@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8b6457304aea68456d16c194192f4a97>>
+ * @generated SignedSource<<2a1d3336b750ab9328685c5bd64678b0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -29,7 +29,7 @@ var node = {
         },
         "kind": "RelayResolver",
         "name": "visible_todos",
-        "resolverModule": require('./../../relay/resolvers/RootVisibleTodosResolver.js'),
+        "resolverModule": require('./../../relay/resolvers/Root').visible_todos,
         "path": "filteredTodos"
       },
       "linkedField": {

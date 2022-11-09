@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<73f6c6da31e613cc104ee1559e667cad>>
+ * @generated SignedSource<<12c688f2b72c5c021ddcf5d1ed8ef4d1>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -25,7 +25,7 @@ var node = {
         "fragment": null,
         "kind": "RelayLiveResolver",
         "name": "all_todos",
-        "resolverModule": require('./../RootAllTodosResolver.js'),
+        "resolverModule": require('./../Root').all_todos,
         "path": "all_todos"
       },
       "linkedField": {
@@ -53,7 +53,7 @@ var node = {
             },
             "kind": "RelayResolver",
             "name": "completed",
-            "resolverModule": require('./../TodoCompletedResolver.js'),
+            "resolverModule": require('./../Todo').completed,
             "path": "completed"
           }
         ],
@@ -69,7 +69,7 @@ var node = {
           "fragment": null,
           "kind": "RelayLiveResolver",
           "name": "visibility_filter",
-          "resolverModule": require('./../RootVisiblityFilterResolver.js'),
+          "resolverModule": require('./../Root').visibility_filter,
           "path": "visibility_filter"
         }
       ]

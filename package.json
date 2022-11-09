@@ -7,7 +7,7 @@
     "prettier": "^2.6.2",
     "react-scripts": "^4.0.3",
     "react-test-renderer": "^16.13.1",
-    "relay-compiler": "0.0.0-main-b3f6189c"
+    "relay-compiler": "0.0.0-main-84c633f9"
   },
   "dependencies": {
     "@craco/craco": "^6.4.5",
@@ -15,9 +15,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.0",
-    "react-relay": "0.0.0-main-b3f6189c",
+    "react-relay": "0.0.0-main-84c633f9",
     "redux": "^4.0.5",
-    "relay-runtime": "0.0.0-main-b3f6189c",
+    "relay-runtime": "0.0.0-main-84c633f9",
     "reselect": "^4.0.0",
     "sql.js": "^1.7.0",
     "todomvc-app-css": "^2.3.0"

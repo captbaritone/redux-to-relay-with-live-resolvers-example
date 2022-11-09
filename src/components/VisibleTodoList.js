@@ -18,6 +18,7 @@ const TodoList = ({ query: queryKey, actions }) => {
     `,
     queryKey
   );
+  console.log("filteredTodos", filteredTodos);
   return (
     <ul className="todo-list">
       {filteredTodos.map((todo) => (

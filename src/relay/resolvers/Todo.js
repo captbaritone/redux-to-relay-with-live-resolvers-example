@@ -1,7 +1,7 @@
 import graphql from "babel-plugin-relay/macro";
+import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
 import { selectLiveDB } from "../../store";
 import { DB } from "../../db";
-import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
 
 /**
  * @RelayResolver
@@ -12,7 +12,7 @@ import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
  *
  * The DB representation of the todo.
  */
-export default function TodoSelfResolver(key) {
+export function self(key) {
   const data = readFragment(
     graphql`
       fragment TodoSelfResolver on Todo {
@@ -39,4 +39,44 @@ export default function TodoSelfResolver(key) {
       text: result.text,
     };
   });
+}
+
+/**
+ * @RelayResolver
+ * @fieldName text
+ * @onType Todo
+ * @rootFragment TodoTextResolver
+ *
+ * The text of the todo.
+ */
+export function text(key) {
+  const data = readFragment(
+    graphql`
+      fragment TodoTextResolver on Todo {
+        self
+      }
+    `,
+    key
+  );
+  return data.self.text;
+}
+
+/**
+ * @RelayResolver
+ * @fieldName completed
+ * @onType Todo
+ * @rootFragment TodoCompletedResolver
+ *
+ * Is the todo completed?
+ */
+export function completed(key) {
+  const data = readFragment(
+    graphql`
+      fragment TodoCompletedResolver on Todo {
+        self
+      }
+    `,
+    key
+  );
+  return data.self.completed;
 }

@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<413c54698b7d505b278749d32fe76051>>
+ * @generated SignedSource<<757e12b797f08e54bba21818a1858bfb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -24,7 +24,7 @@ var node = {
       },
       "kind": "RelayResolver",
       "name": "completed",
-      "resolverModule": require('./../../relay/resolvers/TodoCompletedResolver.js'),
+      "resolverModule": require('./../../relay/resolvers/Todo').completed,
       "path": "completed"
     },
     {
@@ -37,7 +37,7 @@ var node = {
       },
       "kind": "RelayResolver",
       "name": "text",
-      "resolverModule": require('./../../relay/resolvers/TodoTextResolver.js'),
+      "resolverModule": require('./../../relay/resolvers/Todo').text,
       "path": "text"
     },
     {

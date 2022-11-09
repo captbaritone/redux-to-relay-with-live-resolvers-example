@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4db51c7272a2db8d68ee469e676e3415>>
+ * @generated SignedSource<<250a2626a0f2b82579296ee1f6a3f9bc>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,10 +10,24 @@
 
 var node = (function(){
 var v0 = {
-  "alias": null,
+  "name": "visibility_filter",
   "args": null,
-  "kind": "ScalarField",
-  "name": "__id",
+  "fragment": null,
+  "kind": "RelayResolver",
+  "storageKey": null
+},
+v1 = {
+  "name": "todos_count",
+  "args": null,
+  "fragment": null,
+  "kind": "RelayResolver",
+  "storageKey": null
+},
+v2 = {
+  "name": "completed_todos_count",
+  "args": null,
+  "fragment": null,
+  "kind": "RelayResolver",
   "storageKey": null
 };
 return {
@@ -39,14 +53,39 @@ return {
     "name": "AppQuery",
     "selections": [
       {
+        "name": "visible_todos",
+        "args": null,
+        "fragment": {
+          "kind": "InlineFragment",
+          "selections": [
+            {
+              "kind": "ClientExtension",
+              "selections": [
+                {
+                  "name": "all_todos",
+                  "args": null,
+                  "fragment": null,
+                  "kind": "RelayResolver",
+                  "storageKey": null
+                },
+                (v0/*: any*/)
+              ]
+            }
+          ],
+          "type": "Root",
+          "abstractKey": null
+        },
+        "kind": "RelayResolver",
+        "storageKey": null
+      },
+      {
         "kind": "ClientExtension",
         "selections": [
           (v0/*: any*/),
-          (v0/*: any*/),
-          (v0/*: any*/),
-          (v0/*: any*/),
-          (v0/*: any*/),
-          (v0/*: any*/)
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v1/*: any*/),
+          (v2/*: any*/)
         ]
       }
     ]
