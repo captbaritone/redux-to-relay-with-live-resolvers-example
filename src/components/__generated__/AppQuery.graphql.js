@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<250a2626a0f2b82579296ee1f6a3f9bc>>
+ * @generated SignedSource<<9cf9dcff0a87da2ce723dfde07ef3325>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,30 +9,29 @@
 'use strict';
 
 var node = (function(){
-var v0 = {
-  "name": "visibility_filter",
-  "args": null,
-  "fragment": null,
-  "kind": "RelayResolver",
-  "storageKey": null
-},
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "todoFilter"
+  }
+],
 v1 = {
-  "name": "todos_count",
-  "args": null,
+  "name": "todos",
+  "args": [
+    {
+      "kind": "Literal",
+      "name": "filter",
+      "value": "COMPLETED"
+    }
+  ],
   "fragment": null,
   "kind": "RelayResolver",
-  "storageKey": null
-},
-v2 = {
-  "name": "completed_todos_count",
-  "args": null,
-  "fragment": null,
-  "kind": "RelayResolver",
-  "storageKey": null
+  "storageKey": "todos(filter:\"COMPLETED\")"
 };
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "AppQuery",
@@ -48,44 +47,48 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "AppQuery",
     "selections": [
       {
-        "name": "visible_todos",
-        "args": null,
-        "fragment": {
-          "kind": "InlineFragment",
-          "selections": [
-            {
-              "kind": "ClientExtension",
-              "selections": [
-                {
-                  "name": "all_todos",
-                  "args": null,
-                  "fragment": null,
-                  "kind": "RelayResolver",
-                  "storageKey": null
-                },
-                (v0/*: any*/)
-              ]
-            }
-          ],
-          "type": "Root",
-          "abstractKey": null
-        },
-        "kind": "RelayResolver",
-        "storageKey": null
-      },
-      {
         "kind": "ClientExtension",
         "selections": [
-          (v0/*: any*/),
+          {
+            "name": "todos",
+            "args": [
+              {
+                "kind": "Variable",
+                "name": "filter",
+                "variableName": "todoFilter"
+              }
+            ],
+            "fragment": null,
+            "kind": "RelayResolver",
+            "storageKey": null
+          },
           (v1/*: any*/),
-          (v2/*: any*/),
-          (v1/*: any*/),
-          (v2/*: any*/)
+          {
+            "name": "todos",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "filter",
+                "value": "ACTIVE"
+              }
+            ],
+            "fragment": null,
+            "kind": "RelayResolver",
+            "storageKey": "todos(filter:\"ACTIVE\")"
+          },
+          {
+            "name": "todos",
+            "args": null,
+            "fragment": null,
+            "kind": "RelayResolver",
+            "storageKey": null
+          },
+          (v1/*: any*/)
         ]
       }
     ]
@@ -101,6 +104,6 @@ return {
 };
 })();
 
-node.hash = "c2ffb49598436a136b1be75ca1c203a7";
+node.hash = "9a6c446a070f2c734ef27279a1903082";
 
 module.exports = node;

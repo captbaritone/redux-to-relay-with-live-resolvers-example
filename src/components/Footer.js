@@ -1,31 +1,34 @@
 import React from "react";
 import FilterLink from "./FilterLink";
-import {
-  SHOW_ALL,
-  SHOW_COMPLETED,
-  SHOW_ACTIVE,
-} from "../constants/TodoFilters";
 import graphql from "babel-plugin-relay/macro";
 import useFragment from "react-relay/lib/relay-hooks/useFragment";
 
 const FILTER_TITLES = {
-  [SHOW_ALL]: "All",
-  [SHOW_ACTIVE]: "Active",
-  [SHOW_COMPLETED]: "Completed",
+  ALL: "All",
+  ACTIVE: "Active",
+  COMPLETED: "Completed",
 };
 
-const Footer = ({ onClearCompleted, query: queryKey }) => {
+const Footer = ({
+  activeFilter,
+  setActiveFilter,
+  onClearCompleted,
+  query: queryKey,
+}) => {
   const data = useFragment(
     graphql`
       fragment Footer on Root {
-        todos_count
-        completed_todos_count
-        ...FilterLink
+        completed_todos: todos(filter: "COMPLETED") {
+          count
+        }
+        active_todos: todos(filter: "ACTIVE") {
+          count
+        }
       }
     `,
     queryKey
   );
-  const activeCount = data.todos_count - data.completed_todos_count;
+  const activeCount = data.active_todos.count;
   const itemWord = activeCount === 1 ? "item" : "items";
   return (
     <footer className="footer">
@@ -35,13 +38,17 @@ const Footer = ({ onClearCompleted, query: queryKey }) => {
       <ul className="filters">
         {Object.keys(FILTER_TITLES).map((filter) => (
           <li key={filter}>
-            <FilterLink filter={filter} query={data}>
+            <FilterLink
+              setActiveFilter={setActiveFilter}
+              activeFilter={activeFilter}
+              filter={filter}
+            >
               {FILTER_TITLES[filter]}
             </FilterLink>
           </li>
         ))}
       </ul>
-      {!!data.completed_todos_count && (
+      {!!data.completed_todos.count && (
         <button className="clear-completed" onClick={onClearCompleted}>
           Clear completed
         </button>

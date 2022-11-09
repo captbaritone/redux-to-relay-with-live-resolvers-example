@@ -24,6 +24,7 @@ const env = new Environment({
   network: Network.create(fetchRelay),
   store: new LiveResolverStore(new RecordSource()),
   requiredFieldLogger(e) {
+    throw e;
     console.warn(e);
   },
   log: console.log.bind(console),

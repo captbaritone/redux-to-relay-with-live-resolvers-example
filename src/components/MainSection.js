@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import VisibleTodoList from "./VisibleTodoList";
 import { connect } from "react-redux";
@@ -7,19 +7,29 @@ import { bindActionCreators } from "redux";
 import useFragment from "react-relay/lib/relay-hooks/useFragment";
 import graphql from "babel-plugin-relay/macro";
 
-const MainSection = ({ query: queryKey, actions }) => {
+const MainSection = ({
+  query: queryKey,
+  actions,
+  activeFilter,
+  setActiveFilter,
+}) => {
   const data = useFragment(
     graphql`
       fragment MainSection on Root {
-        todosCount: todos_count
-        completedCount: completed_todos_count
+        todos {
+          count
+        }
+        completed_todos: todos(filter: "COMPLETED") {
+          count
+        }
         ...VisibleTodoList
         ...Footer
       }
     `,
     queryKey
   );
-  const { todosCount, completedCount } = data;
+  const completedCount = data.completed_todos.count;
+  const todosCount = data.todos.count;
   return (
     <section className="main">
       {!!todosCount && (
@@ -35,7 +45,12 @@ const MainSection = ({ query: queryKey, actions }) => {
       )}
       <VisibleTodoList query={data} />
       {!!todosCount && (
-        <Footer query={data} onClearCompleted={actions.clearCompleted} />
+        <Footer
+          query={data}
+          setActiveFilter={setActiveFilter}
+          activeFilter={activeFilter}
+          onClearCompleted={actions.clearCompleted}
+        />
       )}
     </section>
   );

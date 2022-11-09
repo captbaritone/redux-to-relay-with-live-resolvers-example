@@ -3,13 +3,13 @@ import { DB } from "../../db";
 
 /**
  * @RelayResolver Todo
- * @rootFragment TodoSelfResolver
  * @live
  *
  * The DB representation of the todo.
  */
 export function Todo(id) {
   return selectLiveDB(() => {
+    // TODO: How can we use the dataloader pattern here?
     const result = DB.first(
       "SELECT id, text, completed FROM todos where id = :id;",
       { ":id": id }

@@ -7,23 +7,26 @@ import { bindActionCreators } from "redux";
 import * as TodoActions from "../actions";
 
 const TodoList = ({ query: queryKey, actions }) => {
-  const { filteredTodos } = useFragment(
+  const { todos } = useFragment(
     graphql`
       fragment VisibleTodoList on Root {
-        filteredTodos: visible_todos {
-          id
-          ...TodoItem
+        todos(filter: $todoFilter) {
+          edges {
+            node {
+              id
+              ...TodoItem
+            }
+          }
         }
       }
     `,
     queryKey
   );
-  console.log("filteredTodos", filteredTodos);
   return (
     <ul className="todo-list">
-      {filteredTodos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} {...actions} />
-      ))}
+      {todos.edges.map((edge) => {
+        return <TodoItem key={edge.node.id} todo={edge.node} {...actions} />;
+      })}
     </ul>
   );
 };
