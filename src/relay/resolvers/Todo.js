@@ -1,30 +1,18 @@
-import graphql from "babel-plugin-relay/macro";
-import { readFragment } from "relay-runtime/lib/store/ResolverFragments";
 import { selectLiveDB } from "../../store";
 import { DB } from "../../db";
 
 /**
- * @RelayResolver
- * @fieldName self
- * @onType Todo
+ * @RelayResolver Todo
  * @rootFragment TodoSelfResolver
  * @live
  *
  * The DB representation of the todo.
  */
-export function self(key) {
-  const data = readFragment(
-    graphql`
-      fragment TodoSelfResolver on Todo {
-        id
-      }
-    `,
-    key
-  );
+export function Todo(id) {
   return selectLiveDB(() => {
     const result = DB.first(
       "SELECT id, text, completed FROM todos where id = :id;",
-      { ":id": data.id }
+      { ":id": id }
     );
     // This can happen if the todo is deleted and the get reevaluated in the
     // wrong order. This is because we've closed over the id, but we reevaluate
@@ -42,41 +30,19 @@ export function self(key) {
 }
 
 /**
- * @RelayResolver
- * @fieldName text
- * @onType Todo
- * @rootFragment TodoTextResolver
+ * @RelayResolver Todo.text: String
  *
  * The text of the todo.
  */
-export function text(key) {
-  const data = readFragment(
-    graphql`
-      fragment TodoTextResolver on Todo {
-        self
-      }
-    `,
-    key
-  );
-  return data.self.text;
+export function text(todo) {
+  return todo.text;
 }
 
 /**
- * @RelayResolver
- * @fieldName completed
- * @onType Todo
- * @rootFragment TodoCompletedResolver
+ * @RelayResolver Todo.completed: Boolean
  *
  * Is the todo completed?
  */
-export function completed(key) {
-  const data = readFragment(
-    graphql`
-      fragment TodoCompletedResolver on Todo {
-        self
-      }
-    `,
-    key
-  );
-  return data.self.completed;
+export function completed(todo) {
+  return todo.completed;
 }

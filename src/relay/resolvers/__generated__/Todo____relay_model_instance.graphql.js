@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<76d342d472c9c89b4df4ef4a07084340>>
+ * @generated SignedSource<<43785c05cc2d726bd7336946e1c1a647>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,7 @@ var node = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "TodoTextResolver",
+  "name": "Todo____relay_model_instance",
   "selections": [
     {
       "alias": null,
@@ -20,18 +20,16 @@ var node = {
       "fragment": {
         "args": null,
         "kind": "FragmentSpread",
-        "name": "TodoSelfResolver"
+        "name": "Todo__id"
       },
       "kind": "RelayLiveResolver",
-      "name": "self",
-      "resolverModule": require('./../Todo').self,
-      "path": "self"
+      "name": "__relay_model_instance",
+      "resolverModule": require('relay-runtime/experimental').resolverDataInjector(require('./Todo__id.graphql'), require('./../Todo').Todo, 'id', true),
+      "path": "__relay_model_instance"
     }
   ],
   "type": "Todo",
   "abstractKey": null
 };
-
-node.hash = "4ca2a9f7428636f8e5db4a69f4ca7341";
 
 module.exports = node;

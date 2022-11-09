@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<12c688f2b72c5c021ddcf5d1ed8ef4d1>>
+ * @generated SignedSource<<6b1376febc307d763836c3fec111b61a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -49,11 +49,11 @@ var node = {
             "fragment": {
               "args": null,
               "kind": "FragmentSpread",
-              "name": "TodoCompletedResolver"
+              "name": "Todo____relay_model_instance"
             },
             "kind": "RelayResolver",
             "name": "completed",
-            "resolverModule": require('./../Todo').completed,
+            "resolverModule": require('relay-runtime/experimental').resolverDataInjector(require('./Todo____relay_model_instance.graphql'), require('./../Todo').completed, '__relay_model_instance', false),
             "path": "completed"
           }
         ],
