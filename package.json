@@ -3,28 +3,30 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "babel-plugin-relay": "^13.2.0",
     "prettier": "^2.6.2",
     "react-scripts": "^4.0.3",
     "react-test-renderer": "^16.13.1",
-    "babel-plugin-relay": "^13.2.0",
-    "relay-compiler": "0.0.0-main-b3f6189c"
+    "relay-compiler": "0.0.0-main-e57db21c"
   },
   "dependencies": {
+    "@craco/craco": "^6.4.5",
     "classnames": "^2.2.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.0",
+    "react-relay": "0.0.0-main-e57db21c",
     "redux": "^4.0.5",
+    "relay-runtime": "0.0.0-main-e57db21c",
     "reselect": "^4.0.0",
-    "todomvc-app-css": "^2.3.0",
-    "react-relay": "0.0.0-main-b3f6189c",
-    "relay-runtime": "0.0.0-main-b3f6189c"
+    "sql.js": "^1.7.0",
+    "todomvc-app-css": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "test": "react-scripts test --env=node",
+    "start": "craco start",
+    "build": "craco build",
+    "eject": "craco eject",
+    "test": "craco test --env=node",
     "relay": "relay-compiler"
   },
   "browserslist": [

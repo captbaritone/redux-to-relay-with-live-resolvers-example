@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<cbef409d40570956292e1597474f89b3>>
+ * @generated SignedSource<<37733cd4f386df68e613c76a7ad53f1d>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,11 +8,13 @@
 
 'use strict';
 
+
+
+
 var node = {
-  "argumentDefinitions": [],
-  "kind": "Fragment",
-  "metadata": null,
-  "name": "FilterLink",
+  "kind": "SplitOperation",
+  "metadata": {},
+  "name": "TodoConnection__pageInfo$normalization",
   "selections": [
     {
       "kind": "ClientExtension",
@@ -21,16 +23,12 @@ var node = {
           "alias": null,
           "args": null,
           "kind": "ScalarField",
-          "name": "visibility_filter",
+          "name": "__relay_model_instance",
           "storageKey": null
         }
       ]
     }
-  ],
-  "type": "Root",
-  "abstractKey": null
+  ]
 };
-
-node.hash = "9a48e52226e3ba02dead6eea6d2e723a";
 
 module.exports = node;

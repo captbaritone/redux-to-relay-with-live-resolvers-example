@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<481ef6ac0ae37c35eb00b895e2b303cb>>
+ * @generated SignedSource<<9cf9dcff0a87da2ce723dfde07ef3325>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,9 +8,30 @@
 
 'use strict';
 
-var node = {
+var node = (function(){
+var v0 = [
+  {
+    "defaultValue": null,
+    "kind": "LocalArgument",
+    "name": "todoFilter"
+  }
+],
+v1 = {
+  "name": "todos",
+  "args": [
+    {
+      "kind": "Literal",
+      "name": "filter",
+      "value": "COMPLETED"
+    }
+  ],
+  "fragment": null,
+  "kind": "RelayResolver",
+  "storageKey": "todos(filter:\"COMPLETED\")"
+};
+return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "AppQuery",
@@ -26,7 +47,7 @@ var node = {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "AppQuery",
     "selections": [
@@ -34,44 +55,40 @@ var node = {
         "kind": "ClientExtension",
         "selections": [
           {
-            "alias": null,
-            "args": null,
-            "concreteType": "Todo",
-            "kind": "LinkedField",
-            "name": "all_todos",
-            "plural": true,
-            "selections": [
+            "name": "todos",
+            "args": [
               {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "__typename",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "completed",
-                "storageKey": null
+                "kind": "Variable",
+                "name": "filter",
+                "variableName": "todoFilter"
               }
             ],
+            "fragment": null,
+            "kind": "RelayResolver",
             "storageKey": null
           },
+          (v1/*: any*/),
           {
-            "alias": null,
+            "name": "todos",
+            "args": [
+              {
+                "kind": "Literal",
+                "name": "filter",
+                "value": "ACTIVE"
+              }
+            ],
+            "fragment": null,
+            "kind": "RelayResolver",
+            "storageKey": "todos(filter:\"ACTIVE\")"
+          },
+          {
+            "name": "todos",
             "args": null,
-            "kind": "ScalarField",
-            "name": "visibility_filter",
+            "fragment": null,
+            "kind": "RelayResolver",
             "storageKey": null
-          }
+          },
+          (v1/*: any*/)
         ]
       }
     ]
@@ -85,7 +102,8 @@ var node = {
     "text": null
   }
 };
+})();
 
-node.hash = "c2ffb49598436a136b1be75ca1c203a7";
+node.hash = "9a6c446a070f2c734ef27279a1903082";
 
 module.exports = node;
