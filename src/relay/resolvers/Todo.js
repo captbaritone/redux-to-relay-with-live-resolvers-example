@@ -11,8 +11,8 @@ export function Todo(id) {
   return selectLiveDB(() => {
     // TODO: How can we use the dataloader pattern here?
     const result = DB.first(
-      "SELECT id, text, completed FROM todos where id = :id;",
-      { ":id": id }
+      `SELECT id, text, completed FROM todos where id = ?;`,
+      [Number(id)]
     );
     // This can happen if the todo is deleted and the get reevaluated in the
     // wrong order. This is because we've closed over the id, but we reevaluate

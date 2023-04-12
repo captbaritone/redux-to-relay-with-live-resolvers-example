@@ -12,36 +12,37 @@ import { DB } from "./db";
 const dbMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case "SET_VISIBILITY_FILTER":
-      DB.run("UPDATE settings SET value = ? WHERE name = ?", [
+      DB.sql(`UPDATE settings SET value = ? WHERE name = ?`, [
         action.filter,
         "visibilityFilter",
       ]);
       break;
     case "COMPLETE_TODO":
       // TODO: Add limit
-      DB.run("UPDATE todos SET completed = NOT completed WHERE id = ?;", [
-        action.id,
+      DB.sql("UPDATE todos SET completed = NOT completed WHERE id = ?;", [
+        Number(action.id),
       ]);
       break;
     case "DELETE_TODO":
       // TODO: Add limit
-      DB.run("DELETE FROM todos WHERE id = ?;", [action.id]);
+      DB.sql("DELETE FROM todos WHERE id = ?;", [Number(action.id)]);
       break;
     case "ADD_TODO":
-      DB.run("INSERT INTO todos (text, completed) VALUES (?, false);", [
+      DB.sql("INSERT INTO todos (id, text, completed) VALUES (?, ?, 0);", [
+        DB.nextId(),
         action.text,
       ]);
       break;
     case "CLEAR_COMPLETED":
-      DB.run("DELETE FROM todos WHERE completed = true;");
+      DB.sql("DELETE FROM todos WHERE completed = true;");
       break;
     case "COMPLETE_ALL_TODOS":
       // TODO: Ideally we could use graphql values here.
-      DB.run("UPDATE todos SET completed = true;");
+      DB.sql("UPDATE todos SET completed = true;");
       break;
     case "EDIT_TODO":
       // TODO: Add limit
-      DB.run("UPDATE todos SET text = ? WHERE id = ?;", [
+      DB.sql("UPDATE todos SET text = ? WHERE id = ?;", [
         action.text,
         action.id,
       ]);

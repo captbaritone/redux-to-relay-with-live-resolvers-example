@@ -1,50 +1,70 @@
-import initSqlJs from "sql.js";
+import { SKDB } from "skdb";
 
-// Required to let webpack 4 know it needs to copy the wasm file to our assets
-import sqlWasm from "!!file-loader?name=sql-wasm-[contenthash].wasm!sql.js/dist/sql-wasm.wasm";
+const resetSKDBOnReload = true;
+
+// TODO(SKDB): I don't think SKDB has interpolation yet?
+function applyWildcards(query, wildcards) {
+  if (Array.isArray(wildcards)) {
+    for (const wildcard of wildcards) {
+      if (typeof wildcard === "string") {
+        query = query.replace("?", `'${wildcard}'`);
+      } else {
+        query = query.replace("?", wildcard);
+      }
+    }
+  } else if (wildcards !== undefined) {
+    throw new Error("wildcards must be an array");
+  }
+  return query;
+}
 
 async function init() {
-  const SQL = await initSqlJs({ locateFile: () => sqlWasm });
-  const db = new SQL.Database();
-  window.__DB = db;
+  const skdb = await SKDB.create(resetSKDBOnReload);
+
+  // For debugging
+  window.__DB = skdb;
+
+  let i = 0;
 
   DB = {
     // Run a query and return the results as an array of objects
-    query(query, wildcards) {
-      const result = db.exec(query, wildcards);
-      // Assume only one statement per query
-      const firstResult = result[0];
-      if (firstResult == null) {
-        return [];
-      }
-
-      // Convert raw SQL results into a row of objects
-      return firstResult.values.map((row) => {
-        const result = {};
-        for (let i = 0; i < firstResult.columns.length; i++) {
-          result[firstResult.columns[i]] = row[i];
-        }
-        return result;
-      });
+    sql(query, wildcards) {
+      //console.log("query", query, wildcards);
+      const result = skdb.sql(applyWildcards(query, wildcards));
+      // console.log(result);
+      return result;
     },
     // Run a query and get the first row
     first(query, wildcards) {
-      return DB.query(query, wildcards)[0];
+      // console.log("query", query, wildcards);
+      const result = skdb.sql(applyWildcards(query, wildcards))[0];
+      // console.log(result);
+      return result;
     },
-    // Run a query and ignore the results
-    run(query, wildcards) {
-      return db.run(query, wildcards);
+    // TODO(SKDB): I don't believe SKDB has AUTOINCREMENT support?
+    nextId() {
+      return i++;
     },
   };
 
   // Setup the database.
-  DB.run(
-    `
-        CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT, completed INTEGER);
-        CREATE TABLE IF NOT EXISTS settings (name TEXT PRIMARY KEY, value TEXT);
-        INSERT INTO settings (name, value) VALUES ("visibilityFilter", "show_all");
-        INSERT INTO todos (text, completed) VALUES ("Use Relay with SQL", false);
-    `
+
+  DB.sql(
+    "CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY, text TEXT, completed INTEGER)"
+  );
+  DB.sql(
+    "CREATE TABLE IF NOT EXISTS settings (name TEXT PRIMARY KEY, value TEXT)"
+  );
+  DB.sql(
+    `INSERT INTO settings (name, value) VALUES ('visibilityFilter', 'show_all')`
+  );
+  DB.sql(
+    `INSERT INTO todos (id, text, completed) VALUES (?, 'Use Relay with SQL', 0)`,
+    [DB.nextId()]
+  );
+  DB.sql(
+    `INSERT INTO todos (id, text, completed) VALUES (?, 'Use Relay with SKDB', 0)`,
+    [DB.nextId()]
   );
 }
 

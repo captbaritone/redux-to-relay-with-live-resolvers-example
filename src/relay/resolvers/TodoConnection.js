@@ -15,9 +15,9 @@ export function edges(connectionArgs) {
   const condition = getCondition(connectionArgs.filter);
   // TODO: Add pagination
   return selectLiveDB(() => {
-    return DB.query(`SELECT id FROM todos ${condition} LIMIT :first;`, {
-      ":first": connectionArgs.first,
-    });
+    return DB.sql(`SELECT id FROM todos ${condition} LIMIT ?;`, [
+      connectionArgs.first,
+    ]);
   });
 }
 
@@ -28,7 +28,8 @@ export function edges(connectionArgs) {
 export function count(connectionArgs) {
   const condition = getCondition(connectionArgs.filter);
   return selectLiveDB(() => {
-    return DB.first(`SELECT count(*) as cnt FROM todos ${condition};`).cnt;
+    // TODO(SKDB): Why is this count returned as `id` and not `cnt`?
+    return DB.first(`SELECT count(*) as cnt FROM todos ${condition};`).id;
   });
 }
 
@@ -39,7 +40,7 @@ export function count(connectionArgs) {
 export function is_empty(connectionArgs) {
   const condition = getCondition(connectionArgs.filter);
   return selectLiveDB(() => {
-    return DB.query(`SELECT id FROM todos ${condition} LIMIT 1;`).length === 0;
+    return DB.sql(`SELECT id FROM todos ${condition} LIMIT 1;`).length === 0;
   });
 }
 

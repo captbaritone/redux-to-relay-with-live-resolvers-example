@@ -1,0 +1,13 @@
+diff --git a/node_modules/skdb/dist/skdb-browser.js b/node_modules/skdb/dist/skdb-browser.js
+index f28dbe2..2abe0e5 100644
+--- a/node_modules/skdb/dist/skdb-browser.js
++++ b/node_modules/skdb/dist/skdb-browser.js
+@@ -892,7 +892,7 @@ export class SKDB {
+         let pageBitSize = 20;
+         client.pageSize = 1 << pageBitSize;
+         // NOTE the `new URL` is required for bundlers like Vite to find the wasm file
+-        let wasmModule = await fetch(new URL("../skdb.wasm", import.meta.url));
++        let wasmModule = await fetch("/skdb.wasm");
+         let wasmBuffer = await wasmModule.arrayBuffer();
+         let typedArray = new Uint8Array(wasmBuffer);
+         let env = client.makeWasmImports();

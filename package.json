@@ -19,7 +19,7 @@
     "redux": "^4.0.5",
     "relay-runtime": "0.0.0-main-e57db21c",
     "reselect": "^4.0.0",
-    "sql.js": "^1.7.0",
+    "skdb": "^0.0.27",
     "todomvc-app-css": "^2.3.0"
   },
   "scripts": {
