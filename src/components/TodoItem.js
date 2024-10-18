@@ -14,6 +14,7 @@ export default function TodoItem({
     graphql`
       fragment TodoItem on Todo {
         id
+        redux_id
         completed
         text
       }
@@ -44,7 +45,7 @@ export default function TodoItem({
       <TodoTextInput
         text={todo.text}
         editing={editing}
-        onSave={(text) => handleSave(todo.id, text)}
+        onSave={(text) => handleSave(todo.redux_id, text)}
       />
     );
   } else {
@@ -54,10 +55,10 @@ export default function TodoItem({
           className="toggle"
           type="checkbox"
           checked={todo.completed}
-          onChange={() => completeTodo(todo.id)}
+          onChange={() => completeTodo(todo.redux_id)}
         />
         <label onDoubleClick={handleDoubleClick}>{todo.text}</label>
-        <button className="destroy" onClick={() => deleteTodo(todo.id)} />
+        <button className="destroy" onClick={() => deleteTodo(todo.redux_id)} />
       </div>
     );
   }

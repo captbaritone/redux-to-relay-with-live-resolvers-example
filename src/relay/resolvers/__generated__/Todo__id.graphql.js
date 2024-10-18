@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<30304bb98ad05493e83537dc11133f7f>>
+ * @generated SignedSource<<4f1998d31462441ce0c70d5efed6e609>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,7 @@ var node = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "TodoSelfResolver",
+  "name": "Todo__id",
   "selections": [
     {
       "kind": "ClientExtension",
@@ -30,7 +30,5 @@ var node = {
   "type": "Todo",
   "abstractKey": null
 };
-
-node.hash = "d6d2c6e74f3ef8a14ff8d772b66574ab";
 
 module.exports = node;

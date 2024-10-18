@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<9a1de6a31e4be006e22bbe70fc4eabb3>>
+ * @generated SignedSource<<2ee8dc0a1b96673dd0575bc310f325a2>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -20,8 +20,46 @@ v1 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
-  "name": "__id",
+  "name": "id",
   "storageKey": null
+},
+v2 = {
+  "kind": "InlineFragment",
+  "selections": [
+    {
+      "name": "__relay_model_instance",
+      "args": null,
+      "fragment": {
+        "kind": "InlineFragment",
+        "selections": [
+          (v1/*: any*/)
+        ],
+        "type": "Todo",
+        "abstractKey": null
+      },
+      "kind": "RelayResolver",
+      "storageKey": null,
+      "isOutputType": false
+    }
+  ],
+  "type": "Todo",
+  "abstractKey": null
+},
+v3 = {
+  "name": "todos_count",
+  "args": null,
+  "fragment": null,
+  "kind": "RelayResolver",
+  "storageKey": null,
+  "isOutputType": true
+},
+v4 = {
+  "name": "completed_todos_count",
+  "args": null,
+  "fragment": null,
+  "kind": "RelayResolver",
+  "storageKey": null,
+  "isOutputType": true
 };
 return {
   "fragment": {
@@ -48,14 +86,67 @@ return {
     "selections": [
       (v0/*: any*/),
       {
+        "kind": "ClientEdgeToClientObject",
+        "backingField": {
+          "name": "visible_todos",
+          "args": null,
+          "fragment": null,
+          "kind": "RelayResolver",
+          "storageKey": null,
+          "isOutputType": false
+        },
+        "linkedField": {
+          "alias": "filteredTodos",
+          "args": null,
+          "concreteType": "Todo",
+          "kind": "LinkedField",
+          "name": "visible_todos",
+          "plural": true,
+          "selections": [
+            (v1/*: any*/),
+            {
+              "name": "redux_id",
+              "args": null,
+              "fragment": (v2/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
+            },
+            {
+              "name": "completed",
+              "args": null,
+              "fragment": (v2/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
+            },
+            {
+              "name": "text",
+              "args": null,
+              "fragment": (v2/*: any*/),
+              "kind": "RelayResolver",
+              "storageKey": null,
+              "isOutputType": true
+            }
+          ],
+          "storageKey": null
+        }
+      },
+      {
         "kind": "ClientExtension",
         "selections": [
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/),
-          (v1/*: any*/)
+          {
+            "name": "visibility_filter",
+            "args": null,
+            "fragment": null,
+            "kind": "RelayResolver",
+            "storageKey": null,
+            "isOutputType": true
+          },
+          (v3/*: any*/),
+          (v4/*: any*/),
+          (v3/*: any*/),
+          (v4/*: any*/)
         ]
       }
     ]

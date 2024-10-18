@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<413c54698b7d505b278749d32fe76051>>
+ * @generated SignedSource<<551cfeedcf165b45ae91cf8df4f4d65a>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -8,7 +8,13 @@
 
 'use strict';
 
-var node = {
+var node = (function(){
+var v0 = {
+  "args": null,
+  "kind": "FragmentSpread",
+  "name": "Todo____relay_model_instance"
+};
+return {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
@@ -17,27 +23,28 @@ var node = {
     {
       "alias": null,
       "args": null,
-      "fragment": {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "TodoCompletedResolver"
-      },
+      "fragment": (v0/*: any*/),
+      "kind": "RelayResolver",
+      "name": "redux_id",
+      "resolverModule": require('relay-runtime/experimental').resolverDataInjector(require('./../../relay/resolvers/__generated__/Todo____relay_model_instance.graphql'), require('./../../relay/resolvers/Todo').redux_id, '__relay_model_instance', true),
+      "path": "redux_id"
+    },
+    {
+      "alias": null,
+      "args": null,
+      "fragment": (v0/*: any*/),
       "kind": "RelayResolver",
       "name": "completed",
-      "resolverModule": require('./../../relay/resolvers/TodoCompletedResolver.js'),
+      "resolverModule": require('relay-runtime/experimental').resolverDataInjector(require('./../../relay/resolvers/__generated__/Todo____relay_model_instance.graphql'), require('./../../relay/resolvers/Todo').completed, '__relay_model_instance', true),
       "path": "completed"
     },
     {
       "alias": null,
       "args": null,
-      "fragment": {
-        "args": null,
-        "kind": "FragmentSpread",
-        "name": "TodoTextResolver"
-      },
+      "fragment": (v0/*: any*/),
       "kind": "RelayResolver",
       "name": "text",
-      "resolverModule": require('./../../relay/resolvers/TodoTextResolver.js'),
+      "resolverModule": require('relay-runtime/experimental').resolverDataInjector(require('./../../relay/resolvers/__generated__/Todo____relay_model_instance.graphql'), require('./../../relay/resolvers/Todo').text, '__relay_model_instance', true),
       "path": "text"
     },
     {
@@ -56,7 +63,8 @@ var node = {
   "type": "Todo",
   "abstractKey": null
 };
+})();
 
-node.hash = "8517b47725e3419758f9773054e4a69a";
+node.hash = "fc5eacf7ab8361c0826d3c6152919e13";
 
 module.exports = node;

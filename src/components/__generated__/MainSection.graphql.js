@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<44d9cb64dc91f7f9a0de3fb97a74d9d7>>
+ * @generated SignedSource<<a239ac1428dd81df0268516859a8f8e3>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -33,7 +33,7 @@ var node = {
           "fragment": null,
           "kind": "RelayLiveResolver",
           "name": "todos_count",
-          "resolverModule": require('./../../relay/resolvers/RootTodosCountResolver.js'),
+          "resolverModule": require('./../../relay/resolvers/Root').todos_count,
           "path": "todosCount"
         },
         {
@@ -42,7 +42,7 @@ var node = {
           "fragment": null,
           "kind": "RelayLiveResolver",
           "name": "completed_todos_count",
-          "resolverModule": require('./../../relay/resolvers/RootCompletedTodosCountResolver.js'),
+          "resolverModule": require('./../../relay/resolvers/Root').completed_todos_count,
           "path": "completedCount"
         }
       ]

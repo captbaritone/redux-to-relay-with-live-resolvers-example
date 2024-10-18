@@ -3,25 +3,25 @@
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
+    "babel-plugin-relay": "^13.2.0",
     "prettier": "^2.6.2",
     "react-scripts": "^4.0.3",
     "react-test-renderer": "^16.13.1",
-    "babel-plugin-relay": "^13.2.0",
-    "relay-compiler": "0.0.0-main-b3f6189c"
+    "relay-compiler": "^18.1.0"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.0",
+    "react-relay": "^18.1.0",
     "redux": "^4.0.5",
+    "relay-runtime": "^18.1.0",
     "reselect": "^4.0.0",
-    "todomvc-app-css": "^2.3.0",
-    "react-relay": "0.0.0-main-b3f6189c",
-    "relay-runtime": "0.0.0-main-b3f6189c"
+    "todomvc-app-css": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject",
     "test": "react-scripts test --env=node",

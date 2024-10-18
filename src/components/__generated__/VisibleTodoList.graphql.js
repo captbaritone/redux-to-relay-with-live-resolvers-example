@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<76b77cef5b8d158e42167b6abaa7118c>>
+ * @generated SignedSource<<e03bab25ee8b33c1b2718cbb5706f2b0>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -19,13 +19,28 @@ var node = {
     {
       "kind": "ClientEdgeToClientObject",
       "concreteType": "Todo",
+      "modelResolvers": {
+        "Todo": {
+          "alias": null,
+          "args": null,
+          "fragment": {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "Todo__id"
+          },
+          "kind": "RelayLiveResolver",
+          "name": "visible_todos",
+          "resolverModule": require('relay-runtime/experimental').resolverDataInjector(require('./../../relay/resolvers/__generated__/Todo__id.graphql'), require('./../../relay/resolvers/Todo').Todo, 'id', true),
+          "path": "filteredTodos.__relay_model_instance"
+        }
+      },
       "backingField": {
         "alias": "filteredTodos",
         "args": null,
         "fragment": null,
         "kind": "RelayLiveResolver",
         "name": "visible_todos",
-        "resolverModule": require('./../../relay/resolvers/RootVisibleTodosResolver.js'),
+        "resolverModule": require('./../../relay/resolvers/Root').visible_todos,
         "path": "filteredTodos"
       },
       "linkedField": {
